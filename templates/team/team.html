@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+    <title>ИТ теам</title>
+ {% block page_content %}
+     <div style="margin-top: 5rem; margin-left: 5rem; margin-right: 5rem;">
+     <h1 style="color: #f2f2f2;">
+        Отдел "Информационно и технологично обслужване"
+    </h1>
+<h2 style="margin-top: 0.5rem; padding-top: 0.5rem; font-size: 25px; margin-bottom: 1rem; color: #f2f2f2;">
+    Нашият екип</h2>
+
+    {% for employee in object_list %}
+        <div style="border: 2px solid #6fcf97; margin-right: 10rem;">
+        <p style="padding: 0.3rem; font-size: 20px;">
+            <span style="font-weight: bold">{{ employee.full_name }}</span>,  <i style="margin-left: 5px; color: #75b726;">длъжност</i>:  {{ employee.employee_position }} </p>
+{#            <a href="{% url 'employee details' pk=employee.pk %}">Контакти</a>#}
+            <p style="padding: 0.3rem; font-size: 20px;">Служебен телефон: (02) 937  {{ employee.employee_dekt }}</p>
+            <p style="padding: 0.3rem; font-size: 20px;">Електронна поща:<a style="color: #75b726" href = "mailto: {{ employee.employee_email}} ">
+           {{ employee.employee_email }}
+            </a></p>
+            </div>
+    {% endfor %}
+
+     </div>
+    {% endblock %}
+
+
+

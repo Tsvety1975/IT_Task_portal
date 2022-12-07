@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <div class="delete-profile">
+    <p>
+        Потвърждавате ли изтриването на профила
+    </p>
+    <form action="{% url 'user delete' pk=object.pk %}" method="post">
+        {{ form.as_p }}
+        <div class="sure-buttons">
+        <button class="edit-btn">Изтрий</button>
+        <a href="javascript:history.back()">Откажи</a>
+        </div>
+        {% csrf_token %}
+    </form>
+    </div>
+{% endblock %}

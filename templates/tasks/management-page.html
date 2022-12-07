@@ -1,0 +1,150 @@
+{#{% extends 'base/base.html' %}#}
+{##}
+{#{% block page_content %}#}
+{#    <div class="details-for-user" style="margin-top: 8rem; margin-left: 5rem; margin-right: 5rem;">#}
+{#    <h3>Общо заявки от служители: {{ all_tasks| length }}</h3>#}
+{#    {% for task_new_user in all_tasks %}#}
+{#         <p class="details-for-user">#}
+{#        Заявка от служител:  {{ task_new_user.user.first_name }}  {{ task_new_user.user.last_name }}  от дата: {{ task_new_user.data_of_creation }}#}
+{#<a href="{% url 'new-user-task-details' task_new_user.user.username task_new_user.pk %}" class="details-for-user" target="_blank">#}
+{#                  - виж детайли#}
+{#               </a>#}
+{#           </p>#}
+{#    {% endfor %}#}
+{##}
+{#            <h3>От които за нов служител {{ in_progress_tasks | length  }}</h3>#}
+{#     {% for task_new_user in in_progress_tasks %}#}
+{#    <p class="details-for-user">#}
+{#        Заявка от служител:  {{ task_new_user.user.first_name }}  {{ task_new_user.user.last_name_bg }}  от дата: {{ task_new_user.data_of_creation }}#}
+{#<a href="{% url 'new-user-task-details' task_new_user.user.username task_new_user.pk %}" class="details-for-user" target="_blank">#}
+{#                  - виж детайли#}
+{#               </a>#}
+{#           </p>#}
+{##}
+{#    {% endfor %}#}
+{#        <h3>Частично изпълненa {{ partial_executed_tasks | length }}</h3>#}
+{#     {% for task_new_user in partial_executed_tasks %}#}
+{#    <p class="details-for-user">#}
+{#        Заявка от служител:  {{ task_new_user.user.first_name }}  {{ task_new_user.user.last_name_bg }}  от дата: {{ task_new_user.data_of_creation }}#}
+{#<a href="{% url 'new-user-task-details' task_new_user.user.username task_new_user.pk %}" class="details-for-user" target="_blank">#}
+{#                  - виж детайли#}
+{#               </a>#}
+{#           </p>#}
+{##}
+{#    {% endfor %}#}
+{#    <h3>Приключени: {{ closed_tasks|length }}</h3>#}
+{#     {% for task_new_user in closed_tasks %}#}
+{#    <p class="details-for-user">#}
+{#        Заявка от служител:  {{ task_new_user.user.first_name }}  {{ task_new_user.user.last_name_bg }}  от дата: {{ task_new_user.data_of_creation }}#}
+{#<a href="{% url 'new-user-task-details' task_new_user.user.username task_new_user.pk %}" class="details-for-user" target="_blank">#}
+{#                  - виж детайли#}
+{#               </a>#}
+{#           </p>#}
+{##}
+{#    {% endfor %}#}
+{##}
+{#    </div>#}
+{#{% endblock %}#}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  {#width: 50%;#}
+  padding: 10px;
+  {#height: 300px; /* Should be removed. Only for demonstration */#}
+}
+.left {
+  width: 60%;
+}
+
+.right {
+  width: 40%;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+a.details-for-user{
+    color: #f2f2f2;
+    text-decoration: none;
+
+}
+a.details-for-user:hover{
+    color: #75b726;
+}
+.nav-column{
+    float: left;
+    padding: 10px;
+}
+</style>
+</head>
+<body style="background-color: #2F4F4F;">
+<div class="nav-row" style="background-color: #abb8c3; color: #FFFFFF;">
+          <div class="nav-column right"><a href="{% url 'index' %}" style="color: black;">
+                         <p>Затвори</p></a></div>
+
+
+                       <div class="nav-column left">
+                           <p><h2>Статистика за заявките</h2></p>
+
+                    </div>
+                   </div>
+
+
+<div class="row" style="color: #FFFFFF;">
+  <div class="column left">
+    <h2>Заявки от служители</h2>
+{#    <div class="details-for-user" style="margin-top: 8rem; margin-left: 5rem; margin-right: 5rem;">#}
+    <h3>Общо заявки от служители: {{ all_tasks| length }}</h3>
+    {% for task_new_user in all_tasks %}
+         <p class="details-for-user">
+        Заявка от служител:  {{ task_new_user.user.first_name }}  {{ task_new_user.user.last_name }}  от дата: {{ task_new_user.data_of_creation }}
+<a href="{% url 'new-user-task-details' task_new_user.user.username task_new_user.pk %}" class="details-for-user" target="_blank">
+                  <i>- детайли</i>
+               </a>
+           </p>
+    {% endfor %}
+
+            <h3>От които за нов служител {{ in_progress_tasks | length  }}</h3>
+     {% for task_new_user in in_progress_tasks %}
+    <p class="details-for-user">
+        Заявка от служител:  {{ task_new_user.user.first_name }}  {{ task_new_user.user.last_name_bg }}  от дата: {{ task_new_user.data_of_creation }}
+<a href="{% url 'new-user-task-details' task_new_user.user.username task_new_user.pk %}" class="details-for-user" target="_blank">
+                   <i>- детайли</i>
+               </a>
+           </p>
+
+    {% endfor %}
+  </div>
+  <div class="column right">
+    <h2>Заявки от външни потребители</h2>
+    <h3>Общо заявки от външни клиенти: {{ external_tasks| length }}</h3>
+    {% for task in external_tasks %}
+         <p class="details-for-user">
+        Заявка контрагент:  {{ task.contractor_name }} за {{ task.office_descropton }} от дата: {{ task.data_of_creation }} към договор {{ task.for_contract }}:
+             <a href="{% url 'telecom-task-details' task.pk %}" class="details-for-user" target="_blank"> детайли</a></p>
+
+
+              <p></a><a href="{% url 'telecom-task-protokol' task.pk %}" class="details-for-user" target="_blank">
+
+                    Създай протокол за изпълнение:
+               </a>
+           </p>
+    {% endfor %}
+
+  </div>
+</div>
+
+</body>
+</html>

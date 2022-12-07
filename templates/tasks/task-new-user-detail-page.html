@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+{#Set details #}
+    <div id="printIt">
+<div class="details-for-task">
+    <p>Заявка номер<i style="color: #75b726">  {{ task_new_user.pk }}</i></p>
+    <p>Дата на заявяване: {{ task_new_user.data_of_creation }}</p>
+     <p>Статус на поръчката: {{ task_new_user.status }}</p>
+<div class="sep-data">
+    <p style="color: black; font-weight: bold; text-transform: uppercase;">Данни за подателя на заявката:</p>
+    <p>Потребителско име: <i>{{ task_new_user.user.username }}</i></p>
+    <p>Име: <i>{{ task_new_user.user.first_name }} {{ task_new_user.user.last_name }}</i></p>
+    <p>Дирекция: <i>{{ task_new_user.user.department_name }}</i></p>
+    <p>Длъжност: <i>{{ task_new_user.user.position }}</i></p>
+    <p>Имейл адрес: <i>{{ task_new_user.user.email }}</i></p>
+    <p>Служебен телефон: <i>{{ task_new_user.user.phone_number }}</i></p></div>
+
+    {% if task_new_user.employee_responsible %}
+        <i><a href="{% url 'the team' %}">Контакти</a></i>
+    <p>Текущ отговорник:  <i style="color: #75b726">{{ task_new_user.employee_responsible}}</i></p>
+        {% else %}
+
+    {% endif %}
+    <p style="color: black; font-weight: bold; text-transform: uppercase;">Данни за лицето, за което се отнася заявката:</p>
+     <p>Име на български: <i style="color: #75b726">{{ task_new_user.worker_first_name_bg }}</i></p>
+     <p>Фамилия на български: <i style="color: #75b726">{{ task_new_user.worker_last_name_bg }}</i></p>
+     <p>Име на латиница: <i style="color: #75b726">{{ task_new_user.worker_first_name_en }}</i></p>
+     <p>Фамилия на латиница: <i style="color: #75b726">{{ task_new_user.worker_last_name_en }}</i></p>
+    <p>Дата на постъпване: <i style="color: #75b726">{{ task_new_user.worker_from_data }}</i></p>
+     <p>Дирекция: <i style="color: #75b726">{{ task_new_user.worker_department }}</i></p>
+     <p>Отдел: <i style="color: #75b726">{{ task_new_user.worker_division }}</i></p>
+     <p>Длъжност: <i style="color: #75b726">{{ task_new_user.worker_position }}</i></p>
+     <p>Мобилен или стационарен  телефонен номер: <i style="color: #75b726">{{ task_new_user.worker_phone_number }}</i></p>
+    <p>Cградата в която работи лицето:  <i style="color: #75b726">{{ task_new_user.work_place_building }}</i></p>
+    <p>Помещение  <i style="color: #75b726">{{ task_new_user.office_number }}</i></p>
+    <p style="color: black; font-weight: bold; text-transform: uppercase;">Заявени услуги:</p>
+     <p>Служителят е нов потребител в системата:  <i style="color: #75b726">{{ task_new_user.is_new_worker | yesno:"да,не,можеби" }}</i></p>
+    <p>Права сходни със служител/ Достъп до:  <i style="color: #75b726">{{ task_new_user.rights_same_as_worker_name }}</i></p>
+    <p>Права за достъп:  <i style="color: #75b726">{{ task_new_user.access_to_read_write }}</i></p>
+    <p>Потребителски акаунт<i style="color: #75b726">{{ task_new_user.create_user_account | yesno:"да,не,можеби"}}</i></p>
+    <p>Имейл адрест:  <i style="color: #75b726">{{ task_new_user.create_user_email | yesno:"да,не,можеби"}}</i></p>
+    <p>Достъп но групов имейл:<i>{{ task_new_user.access_to_group_mail}}</i> </p>
+    <p>Отдалечен достъп до фирмената мрежа от служебен лаптоп:  <i style="color: #75b726">{{ task_new_user.vpn_from_work_laptop| yesno:"да,не,можеби" }}</i></p>
+    <p>Отдалечен достъп до фирмената мрежа от личен компютър:  <i style="color: #75b726">{{ task_new_user.vpn_from_private_comp_to_office_com| yesno:"да,не,можеби" }}</i></p>
+       <p style="color: black; font-weight: bold; text-transform: uppercase">Заявено компютърно и телеком оборудване :</p>
+    <p style="color: black; font-weight: bold;">Компютърно оборудване</p>
+    <p>Настолен компютър: <i style="color: #75b726">{{ task_new_user.computer | yesno:"да,не,можеби"}}</i></p>
+    <p>Лаптоп:  <i style="color: #75b726">{{ task_new_user.laptop | yesno:"да,не,можеби" }}</i></p>
+    <p>Монитор : <i style="color: #75b726">{{ task_new_user.monitor | yesno:"да,не,можеби"}}</i></p>
+    <p>Принтер черно-бял: <i style="color: #75b726">{{ task_new_user.laser_printer_scanner | yesno:"да,не,можеби"}}</i></p>
+    <p>Матричен принтер:  <i style="color: #75b726">{{ task_new_user.matrix_printer | yesno:"да,не,можеби"}}</i></p>
+    <p>Принтер цветен:  <i style="color: #75b726">{{ task_new_user.color_printing_possibility | yesno:"да,не,можеби"}}</i></p>
+    <p>Цветно копиране:  <i style="color: #75b726">{{ task_new_user.color_copy_possibility | yesno:"да,не,можеби"}}</i></p>
+     <p style="color: black; font-weight: bold;">Телекомуникационно оборудване</p>
+    <p>Телефонна линия:  <i style="color: #75b726">{{ task_new_user.phone_line | yesno:"да,не,можеби"}}</i></p>
+    <p>DECT:  <i style="color: #75b726">{{ task_new_user.dekt_mobile_phone | yesno:"да,не,можеби"}}</i></p>
+    <p>Тетра:  <i style="color: #75b726">{{ task_new_user.tetra_station | yesno:"да,не,можеби"}}</i></p>
+    <p>Мобилен телефон:  <i style="color: #75b726">{{ task_new_user.mobile_phone | yesno:"да,не,можеби"}}</i></p>
+    <p style="color: black; font-weight: bold; text-transform: uppercase;">Заявен Достъп до програми и софтуерни продукти</p>
+    <p>Microsoft Office:  <i style="color: #75b726">{{ task_new_user.microsoft_office | yesno:"да,не,можеби"}}</i></p>
+    <p>Деловодна програма Eventis:  <i style="color: #75b726">{{ task_new_user.eventis | yesno:"да,не,можеби"}}</i></p>
+    <p>SioPro:  <i style="color: #75b726">{{ task_new_user.sonita | yesno:"да,не,можеби" }}</i></p>
+    <p>SioProBI:  <i style="color: #75b726">{{ task_new_user.sonita_bi | yesno:"да,не,можеби" }}</i></p>
+    <p>Полетна информация- AHM Info: <i style="color: #75b726">{{ task_new_user.ahm | yesno:"да,не,можеби"}}</i></p>
+    <p>Омекс| Omeks: <i style="color: #75b726">{{ task_new_user.omeks | yesno:"да,не,можеби"}}</i></p>
+    <p>Avtoservice: <i style="color: #75b726">{{ task_new_user.avtoservice | yesno:"да,не,можеби"}}</i></p>
+    <p>Fuels: <i style="color: #75b726">{{ task_new_user.fuels | yesno:"да,не,можеби"}}</i></p>
+    <p>Lakorda: <i style="color: #75b726">{{ task_new_user.legal_software | yesno:"да,не,можеби"}}</i></p>
+    <p>Adobe Pro: <i style="color: #75b726">{{ task_new_user.adobe_software | yesno:"да,не,можеби"}}</i></p>
+    <p>DeepL Pro: <i style="color: #75b726">{{ task_new_user.deepl | yesno:"да,не,можеби"}}</i></p>
+    <p>nanoCad: <i style="color: #75b726">{{ task_new_user.nanocad | yesno:"да,не,можеби"}}</i></p>
+
+{##}
+{#   <form style="margin-left: 15px;">#}
+{#    {{ form.as_p }}#}
+{#    {% csrf_token %}#}
+{##}
+{#    </form> </div>#}
+    </div></div>
+<button style="color: black; margin-left: 45%; padding: 0 20px 0 20px; font-size: 20px;" onClick="printOut('printIt')">
+  Принтирай заявката
+</button>
+    <script>
+    function printOut(printIt) {
+  var printOutContent = document.getElementById(printIt).innerHTML;
+  var originalContent = document.body.innerHTML;
+  document.body.innerHTML = printOutContent;
+  window.print();
+  document.body.innerHTML = originalContent;
+}</script>
+{% endblock %}

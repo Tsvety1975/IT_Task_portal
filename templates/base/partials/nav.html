@@ -1,0 +1,79 @@
+{% load static %}
+<nav class="navbar">
+    <div class="container">
+         <div class="nav-links">
+                <ul class="nav-group">
+                    <li class="nav-item">
+
+                        <!-- Link to Add Pet Page -->
+
+                        <a href="{% url 'index' %}">
+                            <p>Страница за създаване на заявки</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+
+                        <!-- Link to Add Photo Page -->
+{#                        <a href="{%  url 'sign in' %}">#}
+{#                            <p>Вход за регистрирани потребители</p>#}
+{#                        </a>#}
+                    </li>
+                     <li class="nav-item">
+
+                        <!-- Link to Our tim page -->
+                        <a href="{%  url 'buildings' %}">
+                            <p>Карти на сградите</p>
+                        </a>
+                    </li>
+                 <li class="nav-item">
+                        <div class="dropdown">
+                        <!-- Link to Our tim page -->
+
+                            <p class="dropbtn">Нашият екип</p>
+                            <div class="dropdown-content">
+                                <a href="{%  url 'the team' %}">Контакти
+                        </a>
+                                <a href="{% url 'management-page' %}">За администратори</a></div>
+                    </div></li>
+
+{#                    Here we check if we have registerd user#}
+
+            {% if request.user.is_authenticated %}
+                        <!-- Link to Profile Page -->
+                 <li class="nav-item">
+                      <a href="{% url 'user-profile details' pk=request.user.pk %}">
+                    <p>Потребителски профил</p></a>
+                       </li>
+                <li class="nav-item">
+                <a href="{% url 'sign out' %}">
+                    <p>Изход</p></a>
+                </li>
+                            {% else %}
+                     <li class="nav-item"><a href="{% url 'sign up' %}">
+                         <p>Регистрация на потребители</p></a></li>
+
+
+                       <li class="nav-item"><a href="{% url 'sign in' %}">
+                         <p>Вход за регистрирани потребители</p></a>
+                               {% endif %}
+
+                    </li>
+{#                    <li class="nav-item">#}
+{##}
+{#                        <!-- Link to Our tim page -->#}
+{#                        <a href="{%  url 'management-page' %}">#}
+{#                            <p>Статистика</p>#}
+{#                        </a>#}
+{#                    </li>#}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+{#Set details #}
+    <div id="printIt">
+<div class="details-for-task">
+    <p>Заявка номер<i style="color: #75b726">  {{ external_task.pk }}</i></p>
+    <p>Дата на заявяване: {{ external_task.data_of_creation }}</p>
+     <p>Cградата в която ce намира обекта:  <i style="color: #75b726">{{ external_task.place_building }}</i></p>
+    <p>Помещение  <i style="color: #75b726">{{ external_task.office_descropton }}</i></p>
+<div class="sep-data">
+    <p style="color: black; font-weight: bold; text-transform: uppercase;">Данни за фирмата:</p>
+    <p>Контрагент: <i>{{ external_task.contractor_name}}</i></p>
+    <p>Договор: <i>{{ external_task.for_contract}}</i></p>
+    <p>Забележки:  <i style="color: #75b726">{{ external_task.remarks_from_executor}}</i></p>
+    <p style="color: black; font-weight: bold; text-transform: uppercase;">Заявени услуги:</p>
+    <p>Точки за достъп:</p>{{ external_task.new_access_points | yesno:"да,не,можеби" }}
+    <p>Брой точки: {{ external_task.point_number }}</p>
+    <p>За изпълнителя:...................................../подпис/</p>
+    <p>За възложителя:...................................../подпис/</p>
+    <p>Дата на изпълнение: .........................</p>
+</div></div></div>
+<button style="color: black; margin-left: 45%; padding: 0 15px 0 15px; font-size: 20px;" onClick="printOut('printIt')">
+  Принтирай заявката
+</button>
+    <script>
+    function printOut(printIt) {
+  var printOutContent = document.getElementById(printIt).innerHTML;
+  var originalContent = document.body.innerHTML;
+  document.body.innerHTML = printOutContent;
+  window.print();
+  document.body.innerHTML = originalContent;
+}</script>
+{% endblock %}

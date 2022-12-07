@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block page_content %}
+   <div class="edit">
+    <h2 style="margin-top: 2rem;">Промени своите данни | Change priofile </h2>
+       <form class="edit"  method="post" action="{%  url 'user edit' pk=user.pk %}">
+
+            {% for field in form %}
+                {% if not field.label == "Password"  %}
+                <p class="error">{{ field.errors }}</p>
+                <div class="label-input">
+                    <label>{{ field.label }}</label>
+                      {{ field }}
+                    <span>{{ value }}</span>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% csrf_token %}
+    <button class="edit-btn">Запиши промените | Save changes</button>
+    </form>
+{% endblock %}
+

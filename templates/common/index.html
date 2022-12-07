@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{%  load static %}
+{% block page_content %}
+    <div class="content-area-home">
+<section id="index-headline">
+        <div class="index-message">
+            <h2>Информационен <span>портал за ИТ</span>  услуги и оборудване</h2>
+        </div>
+        <img src="{% static '/images/telecom.jpg' %}" alt="car">
+    </section>
+
+{#    <h1 id="home-main-title">#}
+{#    Информационен портал за ИТ услуги и оборудване#}
+{#    </h1>#}
+<h2 id="home-welkome">
+    Добре дошли {{ request.user.first_name }} {{ request.user.last_name }}
+
+</h2>
+{#    <h3 style="margin-top: 9rem; padding-top: 35px;">#}
+    <h3 id="home-explain">
+    Тук можете да подадете заявка за ИТ оборудване и услуги.
+    Това ще бъде възможно след като се регистрирате на Регистрация на потребители.
+    По този начин ще знаем от кого е направена поръчката и ще можем да се свържем с Вас за да уточним детайлите. Имайте в предвид, че
+        заявката трябва да бъде подадена от прекия ръководител на лицето, за което се заявява услугата.
+    </h3>
+    <div id="main-content-home-expalin">
+
+        <p class="task-item">
+            <p style="font-size: 28px"><a class="task-item" style="color: darkgray; text-transform: uppercase;" href="{% url 'new-user task' %}">Подайте Заявка за IT услуги и Оборудване тук *</a></p>
+{#    <i style="font-size: 20px; color: #FFFFFF">* изберете тази опция ако подавате заявка за новопостъпил колега, който до сега не е имал служебен имейл адрес и профил </i>#}
+    </div>
+
+</div>
+{% endblock %}

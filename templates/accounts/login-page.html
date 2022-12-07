@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+
+    <!-- Start Login Section-->
+    <div class="login-register-div">
+        <div class="login-register-box">
+            <h3>Въведете потребителско име и парола   Add username and password</h3>
+
+            <!-- Start Login Form-->
+            <form action="{% url 'sign in' %}" method="post">
+                <p>
+                    {{ form.as_p }}
+                    <input type="hidden" name="next" value="{{ next }}">
+                <!-- Login Button-->
+
+                    <button>Впиши се | Sign in</button>
+                    {% csrf_token %}
+                </p>
+            </form>
+            <!-- End Login Form -->
+
+        </div>
+        <div class="second-option">
+
+            <!-- Link to Register Page-->
+            <p>Ако нямате регистрация | Don't have account?</p><a href="{% url 'sign up' %}">Регистрирайте се | Register</a></p>
+            <p><a href="{% url 'password_reset' %}"><i>Забравена парола?</i></a></p>
+        </div>
+
+    </div>
+    <!-- End Login Section-->
+{% endblock %}

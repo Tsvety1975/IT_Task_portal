@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Starts Head Section -->
+<head>
+
+  <meta charset="utf-8">
+  <title>IT Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+{# co <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>#}
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/free-30-instagram-stories-icons23_122570.png' %}">
+    <title>Портал за заявка на ИТ оборудване и услуги</title>
+</head>
+<!-- End Head Section -->
+
+<!-- Starts Body Section -->
+<body>
+
+<!-- Starts Header Section with Navigation Bar -->
+<header>
+    {% include 'base/partials/nav.html' %}
+</header>
+<main></main>
+
+    {% block page_content %}
+
+    {% endblock %}
+
+
+ <footer>
+
+    <div class="copyright-text-center">
+      <p>&copy; IT Support Center.</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+
+

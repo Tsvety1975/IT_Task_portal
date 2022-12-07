@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load placeholders %}
+
+
+{% block page_content %}
+
+
+    <!-- Start Register Section -->
+    <div class="login-register-div">
+        <div class="login-register-box">
+            <h2>Регистрация | Registration</h2>
+
+
+            <!-- Start Register Form  with all field and placeholders-->
+            <form action="{% url 'sign up' %}" method="post">
+                    {{ form.username|placeholder:'Потребителско име на латиница' }}
+                    {{ form.password1|placeholder:'Въведете парола | Password' }}
+                    {{ form.password2|placeholder:'Повторете паролата| Repeat password' }}
+                    {{ form.email|placeholder:'Въведете email | Email' }}
+                    {{ form.first_name|placeholder:'Име | First name' }}
+                    {{ form.last_name|placeholder:'Фамилно име | Family name' }}
+                    {{ form.phone_number|placeholder:'029376767 / 0888888888' }}
+                    {{ form.user_department|placeholder:'Изберете дирекция | Choose department' }}
+                    {{ form.position|placeholder:'Длъжност | Position' }}
+                <button type="submit">Регистрирайте се</button>
+                    {% csrf_token %}
+
+            </form>
+            <!-- End Register Form -->
+
+        </div>
+        <div class="second-option">
+
+            <!-- Link to Login Page -->
+            <p>Имате ли профил? |Have reqistration <a href="{% url 'sign in' %}"><p>Влезте | Sing in</p></a>
+        </div>
+    </div>
+    <!-- End Register Section -->
+
+{% endblock %}

@@ -1,0 +1,194 @@
+{% load static %}
+{% load placeholders %}
+<!doctype html>
+<html lang="en">
+    <style>
+table, th, td {
+  border: 0.5px solid gray;
+    text-align: left;
+    font-weight: normal;
+    font-size: 18px;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"
+          href="{% static 'css/style-task-forms.css' %}">
+
+    <title>Request for new user</title>
+</head>
+<body>
+<div class="task-form-main-title">
+    <h3 class="task-form-main-title">Моля, попълнет данните на лицето което ще ИЗПОЛЗВА услугата!<br>
+
+Please, fill the data of the person who will USE the services!</h3>
+<i style="color: dimgray">* след като попълните всики данни натиснете бутона за да подадете заявката</i><br>
+<i style="color: dimgray">* for submission press button at the end or the form</i><br>
+</div>
+
+<form style="margin-left: 5rem; padding: 0.5rem; border: 1px black;" method="post" action="{% url 'new-user task' %}">
+
+    <div class="new-user-form-section">
+    <h3 class="task-form-title">Лични данни | Personal data</h3>
+
+    <p class="form-row">
+        <label class="new-user-form-section">{{ form.worker_first_name_bg.field.label}}</label> {{ form.worker_first_name_bg|placeholder:'Иван' }}</p>
+         <p class="form-row">
+        <label class="new-user-form-section">{{ form.worker_second_name_bg.field.label}}</label> {{ form.worker_second_name_bg|placeholder:'Иванов' }}</p>
+        <p class="form-row">{{ form.worker_last_name_bg.field.label }}{{ form.worker_last_name_bg|placeholder:'Петров' }}</p>
+    <p class="form-row"><label class="new-user-form-section">{{ form.worker_first_name_en.field.label }}</label>{{ form.worker_first_name_en|placeholder:'Ivan' }}</p>
+    <p class="form-row">
+        <label class="new-user-form-section">{{ form.worker_last_name_en.field.label }}</label> {{ form.worker_last_name_en|placeholder:'Petrov' }}</p>
+        <p class="form-row">
+        <label class="new-user-form-section">{{ form.is_new_worker.field.label }}</label> {{ form.is_new_worker|placeholder:'Petrov' }}</p>
+    <p class="form-row">
+        <label class=class="new-user-form-section">{{ form.worker_from_data.field.label }}</label> {{ form.worker_from_data}}</p>
+    <p class="form-row">
+        <label class="new-user-form-section">{{ form.worker_department.field.label }}</label> {{ form.worker_department}}</p>
+
+    <p class="form-row">
+        <label class="new-user-form-section">{{ form.worker_division.field.label }}</label> {{ form.worker_division|placeholder:'ИТ | IT' }}</p>
+         <p class="form-row">
+        <label class="new-user-form-section">{{ form.worker_position.field.label }}</label> {{ form.worker_position|placeholder:'Ръководител сектор ТОЙ | Manager TOJ' }}</p>
+    <p class="form-row">
+        <label class="new-user-form-section">{{ form.worker_phone_number.field.label }}</label> {{ form.worker_phone_number|placeholder:'0888112233' }}
+    </p></div>
+        <div class="new-user-form-section">
+    <h3 class="task-form-title">Работно място | Work place details</h3>
+
+      <p class="form-row">
+        <label class="new-user-form-section">{{ form.work_place_building.field.label }}</label> {{ form.work_place_building}}
+    </p>
+          <p class="form-row">
+        <label class="new-user-form-section">{{ form.office_number.field.label }}</label> {{ form.office_number| placeholder:'до помецение 1A56 | next to 1A43' }}
+    </p>
+        <p><i>***Ако не знаете номера на своето помещение може да посочите помещение в близост като ползвате нашите карти</i></p>
+        <p><i>***You can use our maps for help and write room close to yours</i></p>
+
+     </div>
+        <div class="new-user-form-section">
+            <h3 class="task-form-title">Права на потребителя в системата | User access in domain</h3>
+             <p class="form-row">
+        <label class="new-user-form-section">{{ form.rights_same_as_worker_name.field.label }}</label>{{ form.rights_same_as_worker_name| placeholder:'Достъп до фирмени ресурси/папки| Name or access to folder' }}
+    </p>
+        <p class="form-row"><label class="new-user-form-section">{{ form.access_to_read_write.field.label }}</label>{{ form.access_to_read_write }}</p>
+    </div>
+
+    <div class="new-user-form-section">
+
+          <p class="form-row">
+              <label class="new-user-form-section">{{ form.create_user_account.field.label }}</label> {{ form.create_user_account }}
+    </p>
+               <p class="form-row">
+              <label class="new-user-form-section">{{ form.create_user_email.field.label }}</label> {{ form.create_user_email }}
+    </p>
+         <p class="form-row">
+              <label class="new-user-form-section">{{ form.access_to_group_mail.field.label }}</label> {{ form.access_to_group_mail }}
+    </p>
+               <p class="form-row">
+              <label class="new-user-form-section">{{ form.vpn_from_work_laptop.field.label }}</label> {{ form.vpn_from_work_laptop }}
+    </p>
+       <p class="form-row">
+              <label class="new-user-form-section">{{ form.vpn_from_private_comp_to_office_com.field.label }}</label> {{ form.vpn_from_private_comp_to_office_com }}
+       </p></div>
+        <div class="new-user-form-section">
+            <h3 class="task-form-title">Компютърно и телеком оборудване| Equipment</h3>
+            <table style="width: 100%; border: 0.5pt solid gray;">
+                 <tr>
+                    <th style="border: 1pt solid gray;">Компютърно оборудване | Computer equipment</th>
+                    <th style="border: 1pt solid gray;">Телеком оборудване</th>
+                </tr>
+                <tr>
+                    <th>{{ form.computer.field.label }} {{ form.computer }}</th>
+                    <th>{{ form.landline_phone.field.label }} {{ form.landline_phone }}</th>
+                </tr>
+                 <tr>
+                    <th><label>{{ form.laptop.field.label }}</label>{{ form.laptop }}</th>
+                    <th><labe>{{ form.dekt_mobile_phone.field.label }}</labe>{{ form.dekt_mobile_phone }}</th>
+                </tr>
+                 <tr>
+                    <th><label>{{ form.monitor.field.label }}</label>{{ form.monitor }}</th>
+                    <th><label>{{ form.tetra_station.field.label }}</label>{{ form.tetra_station }}</th>
+                </tr>
+                 <tr>
+                     <th><label>{{ form.scaner.field.label }}</label>{{ form.scaner }}</th>
+                     <th><label>{{ form.mobile_phone.field.label }}</label>{{ form.mobile_phone }}</th>
+                </tr>
+                 <tr>
+                    <th><label>{{ form.laser_printer_scanner.field.label }}</label>{{ form.laser_printer_scanner }}</th>
+                    <th></th>
+                </tr>
+                 <tr>
+                    <th><label>{{ form.color_printing_possibility.field.label }}</label>{{ form.color_printing_possibility }}</th>
+                    <th></th>
+                </tr>
+                 <tr>
+                    <th><label>{{ form.matrix_printer.field.label }}</label>{{ form.matrix_printer }}</th>
+                    <th></th>
+                </tr>
+                 <tr>
+                    <th><label>{{ form.color_copy_possibility.field.label }}</label>{{ form.color_copy_possibility }}</th>
+                    <th></th>
+                </tr>
+            </table>
+              </div>
+
+    <div class="new-user-form-section">
+        <div class="new-user-form-subsection">
+            <h4 class="new-user-form-subsection">Софтуер | Software</h4></div>
+            <table style="width: 100%;">
+                <tr>
+                 <td style="width: 53%"><label>{{ form.ahm.field.label }}</label>{{ form.ahm }}</td>
+                    <td style="width: 47%"><label>{{ form.sonita.field.label }}</label>{{ form.sonita }}</td>
+                </tr>
+                   <tr>
+                    <td><label>{{ form.avtoservice.field.label }}</label>{{ form.avtoservice }}</td>
+                    <td><label>{{ form.sonita_bi.field.label }}</label>{{ form.sonita_bi }}</td>
+                </tr>
+                   <tr>
+                    <td><label>{{ form.eventis.field.label }}</label>{{ form.eventis }}</td>
+                    <td><label>{{ form.adobe_software.field.label }}</label>{{ form.adobe_software }}</td>
+                </tr>
+                   <tr>
+                    <td><label>{{ form.fuels.field.label }}</label>{{ form.fuels }}</td>
+                    <td><label>{{ form.deepl.field.label }}</label>{{ form.deepl }}</td>
+                </tr>
+                   <tr>
+                     <td><label>{{ form.legal_software.field.label }}</label>{{ form.legal_software }}</td>
+                    <td><label>{{ form.nanocad.field.label }}</label>{{ form.nanocad }}</td>
+                </tr>
+                   <tr>
+                  <td><label>{{ form.microsoft_office.field.label }}</label>{{ form.microsoft_office }}</td>
+                    <td><label>{{ form.omeks.field.label }}</label>{{ form.omeks }}</td>
+                </tr>
+            </table></div>
+
+
+        <div class="new-user-form-section">
+            <h4 class="new-user-form-subsection">Телефони и радиостанции | Telecommunication equipment</h4>
+            <table style="width: 100%">
+           <tr>
+              <td><label class="new user form section">{{ form.landline_phone.field.label }}</label> {{ form.landline_phone }}</td>
+
+
+              <td><label class="new user form section">{{ form.mobile_phone.field.label }}</label> {{ form.mobile_phone }}</td>
+    </tr>
+               <tr>
+              <td style="width: 53%"><label class="new user form section">{{ form.dekt_mobile_phone.field.label }}</label> {{ form.dekt_mobile_phone }}</td>
+
+                   <td style="width: 47%"><label class="new-user-form-section">{{ form.tetra_station.field.label }}</label> {{ form.tetra_station }}</td>
+
+        </tr>
+
+    </table>
+    </div>
+    {% csrf_token %}
+        <button class='button-task-form'>ПОДАЙ | SUBMIT</button>
+
+    </form>
+
+</body>
+</html>

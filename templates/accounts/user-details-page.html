@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+<div class="details-for-user">
+    {% if is_owner %}
+        <p class="edit-for-user">
+        <a href="{% url 'user edit' pk=user.pk %}" class="edit-for-user">Промяна на профила</a>
+        <a href="{%  url 'user delete' user.pk %}" class="edit-for-user">Изтрий профила</a>
+        </p>
+    {% else %}
+    {% endif %}
+    <p class="details-for-user-name">Потребител: <i class="details-for-user-name">{{ object.first_name }} {{ object.last_name }}</i></p>
+    <div class="details-for-user"><p class="details-for-user-requests">Вашите заявки:</p>
+       {% for task_new_user in task_new_users %}
+           {% if task_new_user.user == request.user %}
+           <p class="details-for-user">
+               <a href="{% url 'new-user-task-details' object.username task_new_user.pk %}" class="details-for-user" target="_blank">
+                   Заявка за новопостъпил служител:  {{ task_new_user.worker_first_name_bg }}  {{ task_new_user.worker_last_name_bg }}  от дата: {{ task_new_user.data_of_creation }} - виж детайли
+               </a>
+           </p>
+           {% endif %}
+           </div>
+        {% endfor %}
+</div>
+{% endblock %}
+
