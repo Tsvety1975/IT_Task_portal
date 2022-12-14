@@ -1,0 +1,33 @@
+version: "3.4"
+
+services:
+#  mailcatcher:
+#    image: schickling/mailcatcher
+#    ports:
+#      - "1080:1080"
+#      - "1025:1025"
+  web:
+    build: ./
+
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./envs/.env
+    depends_on:
+      - postgres
+#      - mailcatcher
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres-user
+      POSTGRES_DB: it_database
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
