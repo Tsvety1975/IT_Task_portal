@@ -26,16 +26,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DEBUG'))
-# DEBUG = True
+
 #This print is for test if it works
 # print(f'Secret={SECRET_KEY}')
 # print(f'DEBUG={DEBUG}')
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 # ALLOWED_HOSTS = []
 CSRF_TRUSTED_ORIGINS = [f'https://{x}' for x in ALLOWED_HOSTS]
-print(ALLOWED_HOSTS)
-print(DEBUG)
-print(SECRET_KEY)
+
 
 
 
