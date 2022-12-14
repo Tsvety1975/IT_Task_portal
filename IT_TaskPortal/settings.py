@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECREY_KEY ')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECRET_KEY = 'django-insecure-b6bmf0-w&rh_zld!07%2sxys2hpa=w$btbovm45(2*pr*j=h6&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -30,9 +30,14 @@ DEBUG = bool(os.environ.get('DEBUG'))
 #This print is for test if it works
 # print(f'Secret={SECRET_KEY}')
 # print(f'DEBUG={DEBUG}')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
+# ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = [f'https://{x}' for x in ALLOWED_HOSTS]
+print(ALLOWED_HOSTS)
+print(DEBUG)
+print(SECRET_KEY)
 
 
-ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -94,7 +99,17 @@ WSGI_APPLICATION = 'IT_TaskPortal.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'it_database',
+        'USER': 'postgres-user',
+        'PASSWORD': 'password',
+        'HOST': 'postgres',
+        'PORT': '5432',
 
+    }
+}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -106,17 +121,17 @@ WSGI_APPLICATION = 'IT_TaskPortal.wsgi.application'
 #
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_ENGINE'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.environ.get('DB_ENGINE'),
+#         'NAME': os.environ.get('DB_NAME'),
+#         'USER': os.environ.get('DB_USER'),
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),
+#         'HOST': os.environ.get('DB_HOST'),
+#         'PORT': os.environ.get('DB_PORT'),
+#
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -154,6 +169,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     BASE_DIR / 'staticfiles',
 )
+
+STATIC_ROOT = '/tmp/IT_TaskPortal/staticfiles'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'mediafiles/'
