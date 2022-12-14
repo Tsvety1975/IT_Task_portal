@@ -33,7 +33,7 @@ services:
       POSTGRES_USER: postgres-user
       POSTGRES_DB: it_database
       PGDATA: /var/lib/postgresql/data/pgdata
-       - "POSTGRES_HOST_AUTH_METHOD=trust"
+      
     volumes:
       - ./postgresql:/var/lib/postgresql/data
 
