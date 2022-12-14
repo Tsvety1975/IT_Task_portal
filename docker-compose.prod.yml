@@ -7,9 +7,9 @@ services:
 #      - "1080:1080"
 #      - "1025:1025"
   web:
+    image::tsvetanka/it_taskportal-web
     build: ./
-   
-
+    
     command: gunicorn IT_TaskPortal.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app/
