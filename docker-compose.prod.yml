@@ -9,7 +9,7 @@ services:
   web:
     
     build: ./
-    image: tsvetanka/it_taskportal-web
+    image: tsvetanka/it_taskportal-1
     
     command: gunicorn IT_TaskPortal.wsgi:application --bind 0.0.0.0:8000
     volumes:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - postgres
 #      - mailcatcher
-  postgres:
+    postgres:
     image: postgres:14.5
     restart: always
     ports:
